@@ -16,7 +16,7 @@ RUN mkdir /sources
 
 # Mono Runtime
 RUN cd /sources && git clone https://github.com/mono/mono.git --recursive
-RUN cd /sources/mono && git pull && ./autogen.sh --disable-nls && make && make install
+RUN cd /sources/mono && git pull && ./autogen.sh --disable-nls && make &>~/mono-build.log && make install &>~/mono-install.log || cat ~/mono-build.log && cat mono-install.log && exit 1
 
 RUN cd /sources && git clone https://github.com/mono/gtk-sharp.git -b gtk-sharp-2-12-branch --recursive
 RUN echo y | apt install libtool libtool-bin pkg-config libglade2-dev
