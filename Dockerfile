@@ -24,11 +24,11 @@ RUN echo y | apt install g++ cmake
 
 # Mono Runtime
 RUN cd /sources && git clone https://github.com/mono/mono.git --recursive
-RUN cd /sources/mono && git pull && ./autogen.sh --disable-nls && make &>/logs/mono-build.log && make install &>/logs/mono-install.log
+RUN cd /sources/mono && git pull && ./autogen.sh --disable-nls && make >/logs/mono-build.log 2>/logs/mono-build.log && make install >/logs/mono-install.log 2>/logs/mono-install.log
 
 RUN cd /sources && git clone https://github.com/mono/gtk-sharp.git -b gtk-sharp-2-12-branch --recursive
-RUN echo y | apt install libtool libtool-bin pkg-config libglade2-dev &>/logs/prerequisites-setup-2.log
-RUN cd /sources/gtk-sharp && ./bootstrap-2.12 && make &>/logs/gtk-sharp-build.log && make install &>/logs/gtk-sharp-install.log
+RUN echo y | apt install libtool libtool-bin pkg-config libglade2-dev >/logs/prerequisites-setup-2.log 2>/logs/prerequisites-setup-2.log
+RUN cd /sources/gtk-sharp && ./bootstrap-2.12 && make >/logs/gtk-sharp-build.log 2>/logs/gtk-sharp-build.log && make install >/logs/gtk-sharp-install.log 2>/logs/gtk-sharp-install.log
 
 # MSBuild
 RUN echo y | apt install libunwind8
