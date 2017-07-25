@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:17.04
 
 MAINTAINER Atsushi Eno <atsushieno@gmail.com>
 
@@ -9,9 +9,9 @@ RUN mkdir /logs
 
 # Xamarin.Android prerequisites (copied from xamarin-android/Dockerfile)
 
-RUN export PATH=/usr/local/bin:$PATH
-RUN export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
-RUN export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
+ENV PATH=/usr/local/bin:$PATH
+ENV LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+ENV PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
 
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
 RUN echo "deb http://download.mono-project.com/repo/debian wheezy main" | tee /etc/apt/sources.list.d/mono-xamarin.list
