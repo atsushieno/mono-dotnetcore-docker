@@ -13,7 +13,7 @@ RUN echo "deb http://download.mono-project.com/repo/debian wheezy main" | tee /e
 RUN echo "deb http://download.mono-project.com/repo/debian alpha main" | tee /etc/apt/sources.list.d/mono-xamarin-alpha.list
 RUN apt-get update
 
-RUN echo y | apt install curl openjdk-8-jdk git make automake autoconf libtool unzip vim-common clang nuget referenceassemblies-pcl lib32stdc++6 lib32z1 libzip4 &> ~/setup-prerequisites.log
+RUN echo y | apt install curl openjdk-8-jdk git make automake autoconf libtool unzip vim-common clang nuget referenceassemblies-pcl lib32stdc++6 lib32z1 libzip4git &> ~/setup-prerequisites.log
 # RUN echo y | apt install mono-xbuild
 RUN echo y | apt install g++ cmake
 
