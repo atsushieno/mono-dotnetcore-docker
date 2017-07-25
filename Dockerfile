@@ -9,14 +9,15 @@ RUN echo "deb http://download.mono-project.com/repo/debian wheezy main" | tee /e
 RUN echo "deb http://download.mono-project.com/repo/debian alpha main" | tee /etc/apt/sources.list.d/mono-xamarin-alpha.list
 RUN apt-get update
 
-RUN echo y | apt install curl openjdk-8-jdk git make automake autoconf libtool unzip vim-common clang nuget mono-xbuild referenceassemblies-pcl lib32stdc++6 lib32z1 libzip4
+RUN echo y | apt install curl openjdk-8-jdk git make automake autoconf libtool unzip vim-common clang nuget referenceassemblies-pcl lib32stdc++6 lib32z1 libzip4
+# RUN echo y | apt install mono-xbuild
 RUN echo y | apt install g++ cmake
 
 RUN mkdir /sources
 
 # Mono Runtime
 RUN cd /sources && git clone https://github.com/mono/mono.git --recursive
-RUN cd /sources/mono && git pull && ./autogen.sh --disable-nls && make &>~/mono-build.log && make install &>~/mono-install.log || cat ~/mono-build.log && cat mono-install.log && exit 1
+RUN cd /sources/mono && git pull && ./autogen.sh --disable-nls && make &>~/mono-build.log && make install &>~/mono-install.log
 
 RUN cd /sources && git clone https://github.com/mono/gtk-sharp.git -b gtk-sharp-2-12-branch --recursive
 RUN echo y | apt install libtool libtool-bin pkg-config libglade2-dev
