@@ -2,7 +2,12 @@
 # Docker Hub https://registry.hub.docker.com/_/debian/
 # Read more about containers on our dev center
 # http://devcenter.wercker.com/docs/containers/index.html
-box: debian
+box:
+    id:  gcr.io/mono-dotnetcore-docker/github-atsushieno-mono-dotnetcore-docker 
+    username: _json_key
+    password: $GCR_JSON_KEY_FILE
+    registry: https://gcr.io
+    tag: 424843da509899b51234592c2c321115987843dc
 # You can also use services such as databases. Read more on our dev center:
 # http://devcenter.wercker.com/docs/services/index.html
 # services:
