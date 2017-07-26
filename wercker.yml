@@ -21,7 +21,54 @@ build:
     # http://devcenter.wercker.com/docs/steps/index.html
   steps:
     - script:
-        name: echo
+        name: build
         code: |
-          echo "hello world!"
-
+            export PATH=/usr/local/bin:$PATH
+            export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+            export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
+            echo "---------------------------------------------------------"
+            echo "Building mono..."
+            echo "---------------------------------------------------------"
+            cd /sources/mono
+            git pull
+            ./autogen.sh --disable-nls
+            make
+            make install
+            echo "---------------------------------------------------------"
+            echo "Building gtk-sharp..."
+            echo "---------------------------------------------------------"
+            cd /sources/gtk-sharp
+            git pull
+            ./bootstrap-2.12
+            make
+            make install
+            echo "---------------------------------------------------------"
+            echo "Building mono msbuild..."
+            echo "---------------------------------------------------------"
+            cd /sources/msbuild
+            git pull
+            ./cibuild.sh --host Mono --target Mono
+            ./install-mono-prefix.sh /usr/local
+            echo "---------------------------------------------------------"
+            echo "Building mono fsharp..."
+            echo "---------------------------------------------------------"
+            cd /sources/fsharp
+            git pull
+            ./autogen.sh
+            make
+            make install
+            echo "---------------------------------------------------------"
+            echo "Building monodevelop..."
+            echo "---------------------------------------------------------"
+            cd /sources/monodevelop
+            git pull
+            ./configure
+            make
+            make install
+            echo "---------------------------------------------------------"
+            echo "Building xamarin-android..."
+            echo "---------------------------------------------------------"
+            cd /sources/xamarin-android
+            git pull
+            make prepare
+            make
