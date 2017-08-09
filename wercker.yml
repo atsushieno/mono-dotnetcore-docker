@@ -7,7 +7,7 @@ box:
     username: _json_key
     password: $GCR_JSON_KEY_FILE
     registry: https://gcr.io
-    tag: 424843da509899b51234592c2c321115987843dc
+    tag: 487f067394cfafd5f34f6d652cea5a9011514620
 command-timeout: 60
 # You can also use services such as databases. Read more on our dev center:
 # http://devcenter.wercker.com/docs/services/index.html
