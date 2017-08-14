@@ -78,3 +78,10 @@ build:
             git pull
             make prepare
             make
+            echo "---------------------------------------------------------"
+            echo "Building Embeddinator-4000..."
+            echo "---------------------------------------------------------"
+            cd /sources && git clone --recursive https://github.com/mono/Embeddinator-4000.git
+            cd /sources/Embeddinator-4000
+            git pull
+            ./build.sh
